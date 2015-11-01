@@ -36,6 +36,10 @@ body {
 }
 
 
+.pointer:hover{
+    cursor: pointer;
+}
+
 
 .padding-small{
     padding: 5px 5px 5px 5px;
@@ -143,6 +147,299 @@ body {
 
 
 
+#p1{
+    position: absolute;
+    border: 2px solid black;
+    top: 0%;
+    right: 5%;
+    height: 10%;
+    width: 20%;
+    min-height: 50px;
+    min-width: 135px;
+    z-index: 1;
+    background-color: black;
+}
+
+#p2{
+    position: absolute;
+    border: 2px solid black;
+    top: 25%;
+    right: -5%;
+    height: 10%;
+    width: 20%;
+    min-height: 50px;
+    min-width: 135px;
+    z-index: 1;
+    background-color: black;
+}
+
+
+#p3{
+    position: absolute;
+    border: 2px solid black;
+    top: 60%;
+    right: -5%;
+    height: 10%;
+    width: 20%;
+    min-height: 50px;
+    min-width: 135px;
+    z-index: 1;
+    background-color: black;
+}
+
+#p4{
+    position: absolute;
+    border: 2px solid black;
+    top: 85%;
+    right: 5%;
+    height: 10%;
+    width: 20%;
+    min-height: 50px;
+    min-width: 135px;
+    z-index: 1;
+    background-color: black;
+}
+
+#p5{
+    position: absolute;
+    border: 2px solid black;
+    top: 65%;
+    right: 31%;
+    height: 10%;
+    width: 40%;
+    min-height: 50px;
+    min-width: 135px;
+    z-index: 1;
+    background-color: black;
+}
+
+#p5-options{
+    position: absolute;
+    border: 2px solid black;
+    top: 75%;
+    right: 31%;
+    height: 30%;
+    width: 40%;
+    min-height: 50px;
+    min-width: 135px;
+    z-index: 1;
+    background-color: black;
+}
+
+#p5-bet{
+    position: absolute;
+    width: 80%;
+    right: 12%;
+    color: white;
+}
+
+#p5-bet > input[type=text]{
+    width: 83%;
+    float: left;
+}
+
+#p5-bet > input[type=submit]{
+    float: right;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background: green;
+    border: 0 none;
+    cursor: pointer;
+}
+
+.p5-button{
+    background-color: green;
+    width: 25%;
+    height: 25px;
+    border-radius: 10px;
+}
+
+
+
+.p5-button:hover{
+    cursor: pointer;
+    background-color: lightskyblue;
+}
+
+#bet{
+    position: absolute;
+    top: -25%;
+    right: -10%;
+    text-align: center;
+    color: white;
+}
+
+#bet-small{
+    position: absolute;
+    top: 35%;
+    left: 10%;
+    color: white;
+    text-align: center;
+}
+
+#bet-large{
+    position: absolute;
+    top: 35%;
+    left: 40%;
+    color: white;
+    text-align: center;
+}
+
+#bet-all{
+    position: absolute;
+    top: 75%;
+    left: 10%;
+    color: white;
+    text-align: center;
+}
+
+#bet-check{
+    position: absolute;
+    top: 75%;
+    left: 40%;
+    color: white;
+    text-align: center;
+}
+
+#bet-fold{
+    position: absolute;
+    top: 75%;
+    left: 70%;
+    color: white;
+    text-align: center;
+}
+
+#p6{
+    position: absolute;
+    border: 2px solid black;
+    top: 85%;
+    right: 75%;
+    height: 10%;
+    width: 20%;
+    min-height: 50px;
+    min-width: 135px;
+    z-index: 1;
+    background-color: black;
+}
+
+#p7{
+    position: absolute;
+    border: 2px solid black;
+    top: 60%;
+    right: 85%;
+    height: 10%;
+    width: 20%;
+    min-height: 50px;
+    min-width: 135px;
+    z-index: 1;
+    background-color: black;
+}
+
+#p8{
+    position: absolute;
+    border: 2px solid black;
+    top: 25%;
+    right: 85%;
+    height: 10%;
+    width: 20%;
+    min-height: 50px;
+    min-width: 135px;
+    z-index: 1;
+    background-color: black;
+}
+
+#p9{
+    position: absolute;
+    border: 2px solid black;
+    top: 0%;
+    right: 75%;
+    height: 10%;
+    width: 20%;
+    min-height: 50px;
+    min-width: 135px;
+    z-index: 1;
+    background-color: black;
+}
+
+
+.p-container{
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.p-username{
+    position: absolute;
+    height: 40%;
+    width: 100%;
+    border-bottom: white 2px solid;
+}
+
+.p-username > p {
+    text-align: center;
+    color: white;
+    font-size: 1.5vmin;
+}
+
+.p-chips{
+    position: absolute;
+    top: 40%;
+    height: 60%;
+    width: 100%;
+}
+
+.p-chips > p {
+    text-align: center;
+    color: green;
+    font-size: 1.9vmin;
+}
+
+
+
+#msg-board {
+    position: relative;
+    margin-top: 45px;
+    height: 100%;
+    min-height: 50px;
+    border: black solid 2px;
+    width: 100%;
+    background-color: whitesmoke;
+    z-index: 1
+}
+
+#msg-header{
+    position: absolute;
+    height: 15%;
+    max-height: 34px;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    background-color: black;
+}
+
+#msg-header > p {
+    font-size: 18px;
+    color: white;
+}
+
+.exit {
+    position: absolute;
+    top: 0;
+    right: 1%;
+    font-size: 18px;
+    color: red;
+}
+
+.exit:hover{
+    cursor: pointer;
+}
+
+
+
+
+
 
 
 
@@ -224,50 +521,6 @@ body {
     //border-radius: inherit;
 }
 
-
-#player-1-spot{
-    
-    position: absolute;
-    left: 79%; top: 12%;
-    height: 55px;
-    width: 75px;
-    border-width: 2px;
-    border-color: darkslategrey;
-    border-style: solid;
-
-}
-
-#player-2-spot{
-    
-}
-
-#player-3-spot{
-    
-}
-
-#player-4-spot{
-    
-}
-
-#player-5-spot{
-    
-}
-
-#player-6-spot{
-    
-}
-
-#player-7-spot{
-    
-}
-
-#player-8-spot{
-    
-}
-
-#player-9-spot{
-    
-}
 
 #topbar {
   position: fixed;

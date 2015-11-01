@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600|Ubuntu+Condensed" rel="stylesheet" type="text/css">
   </head>
 
-<body style="min-width: 900px !important;">
+<body style="min-width: 900px !important; max-width: 1400px !important; margin: 0 auto;">
   
 <!--navigation bar-->  
 <div id="nav-bar">
@@ -27,6 +27,7 @@
     <div id="game-menu">
       <span>Join Table</span>
       <span>Create Table</span>
+      <span class = "pointer" id="dealCard" onclick="clickNow();">Deal Card</span>
     </div>
     <!--end of game menu frame-->
     
@@ -34,17 +35,171 @@
     <div id="game-container">
     <div id="game">
       <div id="poker-container">
+        
       <div id="poker-table">
         <div id ="dealer-spot"></div>
         <img src="pokertable.png" alt="poker table"/>
+        
+        <div id = "p1">
+        <div class="p-container">
+            
+          <div class="p-username">
+            <p>Patrick</p>
+          </div>
+          <div class="p-chips">
+            <p>10,000</p>
+          </div>
+            
+        </div>
+        </div>
+        
+        
+        <div id = "p2">
+        <div class="p-container">
+            
+          <div class="p-username">
+            <p>Patrick</p>
+          </div>
+          <div class="p-chips">
+            <p>10,000</p>
+          </div>
+            
+        </div>
+        </div>
+        
+        <div id = "p3">
+        <div class="p-container">
+            
+          <div class="p-username">
+            <p>Patrick</p>
+          </div>
+          <div class="p-chips">
+            <p>10,000</p>
+          </div>
+            
+        </div> 
+        </div>
+        
+        <div id = "p4">
+        <div class="p-container">
+            
+          <div class="p-username">
+            <p>Patrick</p>
+          </div>
+          <div class="p-chips">
+            <p>10,000</p>
+          </div>
+            
+        </div>
+        </div>
+        
+        
+        <div id = "p5">
+        <div class="p-container">
+            
+          <div class="p-username">
+            <p>Patrick</p>
+          </div>
+          <div class="p-chips">
+            <p>10,000</p>
+          </div>
+        </div>
+        </div>
+        
+        <div id='p5-options'>
+        <div class='p-container'>
+          
+          <div id="p5-bet">
+            <input type="text" id="text" name="text_name" />
+            <p class="p5-button" id="bet">Bet</p>
+          </div>
+          
+
+            <p class="p5-button" id="bet-small">small</p>
+            <p class="p5-button" id="bet-large">large</p>
+            <p class="p5-button" id="bet-all">all in</p>
+            <p class="p5-button" id="bet-check">check</p>
+            <p class="p5-button" id="bet-fold">fold</p>
+            
+          <!--<p id="bet-large">large blind</p>-->
+          
+          <!--<p id="all-in">all in</p>-->
+          <!--<p id="p5-check">check</p>-->
+          <!--<p id="p5-fold">check</p>-->
+          
+          
+        </div>
+        </div>
+        
+        
+        
+        <div id = "p6">
+        <div class="p-container">
+            
+          <div class="p-username">
+            <p>Patrick</p>
+          </div>
+          <div class="p-chips">
+            <p>10,000</p>
+          </div>
+            
+        </div>
+        </div>
+        
+        
+        <div id = "p7">
+        <div class="p-container">
+            
+          <div class="p-username">
+            <p>Patrick</p>
+          </div>
+          <div class="p-chips">
+            <p>10,000</p>
+          </div>
+            
+        </div>
+        </div>
+        
+        <div id = "p8">
+        <div class="p-container">
+            
+          <div class="p-username">
+            <p>Patrick</p>
+          </div>
+          <div class="p-chips">
+            <p>10,000</p>
+          </div>
+            
+        </div>
+        </div>
+        
+        
+        <div id = "p9">
+        <div class="p-container">
+            
+          <div class="p-username">
+            <p>Patrick</p>
+          </div>
+          <div class="p-chips">
+            <p>10,000</p>
+          </div>
+            
+        </div>
+        </div>
+          
+        
       </div>
+        
+        
+        <div id = 'msg-board'>
+          <div id ='msg-header'>
+            <p>Chat Box</p>
+            <div class='exit'>X</div>
+          </div>
+        </div> 
+       
       </div>
-      
-      
-      
-      
-      
-      
+  
       
       
       
@@ -87,5 +242,72 @@
   <!--<script src="example.js"></script>-->
   <script src="holdem.js"></script>
 
+  <script>
+  
+  adjustPokerFrame("poker-frame", "poker-table");      
+  adjustDivHeight("msg-board", "game");      
+  
+  window.onresize = function(event) {
+    adjustPokerFrame("poker-frame", "poker-table");
+    adjustDivHeight("msg-board", "game");
+};
+  
+  function clickNow(){
+     var p2 = document.getElementById("p2")
+     var p2Position = getPos(p2);
+     dealCard(p2Position.x, p2Position.y);
+  }
+
+  
+  function minimize(divID){
+    var div = document.getElementById(divID);
+    
+  }
+    
+    
+  
+  
+  function adjustPokerFrame(div1ID, div2ID){
+    
+    var div1 = document.getElementById(div1ID);
+    var div2 = document.getElementById(div2ID);
+    
+    var div1Pos = getPos(div1);
+    var dy      = div1Pos.y;
+    
+    var div2Height    = div2.offsetHeight + 350;  // 88 is chosen to accomadate margin-top
+    var div1NewHeight = ((div2Height - dy) + "px");
+  
+    div1.style.height = div1NewHeight;
+    
+  }
+
+  
+  function adjustDivHeight(div1ID, div2ID){
+    
+    var div1 = document.getElementById(div1ID);
+    var div2 = document.getElementById(div2ID);
+    
+    var div1Pos = getPos(div1);
+    var dy      = div1Pos.y;
+    
+    var div2Height    = div2.offsetHeight + 88;  // 88 is chosen to accomadate margin-top
+    var div1NewHeight = ((div2Height - dy) + "px");
+  
+    div1.style.height = div1NewHeight;
+    
+  }
+    
+function getPos(el) {
+    // yay readability
+    for (var lx=0, ly=0;
+         el != null;
+         lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
+    return {x: lx,y: ly};
+}
+
+  </script>
+  
+  
 </body>
 </html>
