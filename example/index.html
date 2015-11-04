@@ -27,7 +27,8 @@
     <div id="game-menu">
       <span>Join Table</span>
       <span>Create Table</span>
-      <span class = "pointer" id="dealCard" onclick="clickNow();">Deal Card</span>
+      <span class = "pointer" id="dealCard" onclick="game()">Deal Card</span>
+      <span class = "pointer" id="dealCard" onclick="flipCards()">Flip Cards</span>
     </div>
     <!--end of game menu frame-->
     
@@ -40,7 +41,7 @@
         <div id ="dealer-spot"></div>
         <img src="pokertable.png" alt="poker table"/>
         
-        <div id = "p1">
+        <div class="z-1000" id = "p1" onclick="clickNow('p1');">
         <div class="p-container">
             
           <div class="p-username">
@@ -54,7 +55,7 @@
         </div>
         
         
-        <div id = "p2">
+        <div class="z-1000" id = "p2">
         <div class="p-container">
             
           <div class="p-username">
@@ -67,7 +68,7 @@
         </div>
         </div>
         
-        <div id = "p3">
+        <div class="z-1000" id = "p3" onclick="clickNow('p3');">
         <div class="p-container">
             
           <div class="p-username">
@@ -80,7 +81,7 @@
         </div> 
         </div>
         
-        <div id = "p4">
+        <div class="z-1000" id = "p4" onclick="clickNow('p4');">
         <div class="p-container">
             
           <div class="p-username">
@@ -94,7 +95,7 @@
         </div>
         
         
-        <div id = "p5">
+        <div class="z-1000" id = "p5" onclick="clickNow('p5');">
         <div class="p-container">
             
           <div class="p-username">
@@ -106,7 +107,7 @@
         </div>
         </div>
         
-        <div id='p5-options'>
+        <div class="z-1000" id='p5-options'>
         <div class='p-container'>
           
           <div id="p5-bet">
@@ -133,7 +134,7 @@
         
         
         
-        <div id = "p6">
+        <div class="z-1000" id = "p6">
         <div class="p-container">
             
           <div class="p-username">
@@ -147,7 +148,7 @@
         </div>
         
         
-        <div id = "p7">
+        <div class="z-1000" id = "p7">
         <div class="p-container">
             
           <div class="p-username">
@@ -160,7 +161,7 @@
         </div>
         </div>
         
-        <div id = "p8">
+        <div class="z-1000" id = "p8">
         <div class="p-container">
             
           <div class="p-username">
@@ -174,7 +175,7 @@
         </div>
         
         
-        <div id = "p9">
+        <div class="z-1000" id = "p9">
         <div class="p-container">
             
           <div class="p-username">
@@ -188,16 +189,7 @@
         </div>
           
         
-      </div>
-        
-        
-        <div id = 'msg-board'>
-          <div id ='msg-header'>
-            <p>Chat Box</p>
-            <div class='exit'>X</div>
-          </div>
-        </div> 
-       
+      </div>       
       </div>
   
       
@@ -244,18 +236,148 @@
 
   <script>
   
-  adjustPokerFrame("poker-frame", "poker-table");      
-  adjustDivHeight("msg-board", "game");      
+  //adjustPokerFrame("poker-frame", "poker-table");      
+  //adjustDivHeight("msg-board", "game");      
   
   window.onresize = function(event) {
-    adjustPokerFrame("poker-frame", "poker-table");
-    adjustDivHeight("msg-board", "game");
+    
+    //adjustPokerFrame("poker-frame", "poker-table");
+    //adjustDivHeight("msg-board", "game");
+
+    var locations = getPlayerPositions(9);
+    for(i in $GAME){
+      $GAME[i].updateLocation(locations[i]);
+      
+    }
 };
+
   
-  function clickNow(){
-     var p2 = document.getElementById("p2")
-     var p2Position = getPos(p2);
-     dealCard(p2Position.x, p2Position.y);
+  
+  function Player(location){
+    this.x     = location.x;
+    this.y     = location.y;
+    this.user  = false;
+    this.cards = [];
+    
+    this.setUser = function(isUser){
+      this.user = isUser;
+    };
+    this.setCards = function(card){
+      this.cards.push(card);
+    };
+    this.showFront = function(){
+      this.cards.forEach(function (card, i){
+        card.setSide('front');
+      });
+    };
+    this.updateLocation = function(location){
+      this.x = location.x;
+      this.y = location.y;
+      this.cards.forEach(function (card, i){
+        if(i===0){
+          card.x = location.x + 40;
+        }
+        else{
+          card.x = location.x; 
+        }
+        card.y = location.y;
+      });
+    };
+  }
+   
+   var $GAME = initGame(9);
+   
+   
+  //initializes player positions and returns an array of player objects
+  function initGame(numPlayers){
+    var players = [];
+    for(var i=0;i<numPlayers;i++){
+      var key = "p" + (i+1).toString();
+      var value = getDistance(key, "dealer-spot");
+      players[i] = new Player(value);
+    }
+    return players;
+  }
+  
+  //startGame(players, players.length);
+  
+  // starts game with an array of player objects as a parameter
+  function startGame(players, numPlayers){
+    // players[4] is designated as the client/user
+    // which is the player associated with the div id = 'p5'
+    var delayCard = 0;
+    players[4].user = true;
+    for(i=0;i<numPlayers;i++){
+      var card = dealCard(players[i], (delayCard * .5));
+      players[i].setCards(card);
+      delayCard++;
+      //players[i].setCards(dealCard(players[i], (delayCard * .5)));
+    }
+    for(i=0;i<numPlayers;i++){
+      var card = dealCard(players[i], (delayCard * .5));
+      players[i].setCards(card);
+      delayCard++;
+    }
+    return players;
+  }
+  
+  function game(){
+    $GAME = startGame($GAME, $GAME.length);
+  }
+  
+  function flipCards(){
+    $GAME[4].showFront();
+  }
+  
+  function getPlayerPositions(numPlayers){
+    var locations = [];
+    for(var i=0;i<numPlayers;i++){
+      var key = "p" + (i+1).toString();
+      var value = getDistance(key, "dealer-spot");
+      locations.push(value);
+    }
+    return locations;
+  }
+  /*
+  
+  function playGame(){
+      var players = [];
+      for (var i=1;i<10;i++){
+        var key = "p" + i.toString();
+        var value = getDistance(key, "dealer-spot")
+        players[i] = value;
+      }
+      
+      var playerCounter = 1;
+      var cardNumber    = 1;
+      for(var i=1; i<19; i++, playerCounter++){
+        
+        if(playerCounter===5){
+          dealCard(players[playerCounter], cardNumber, (i * .5));
+        }
+        else{
+          dealCard(players[playerCounter], cardNumber, (i * .5));
+        }
+        if(playerCounter === 9){
+          playerCounter = 0;
+          cardNumber    = 2;
+        }
+      }
+  }*/
+  
+  function getDistance(e1_id, e2_id){
+    var e1 = document.getElementById(e1_id);
+    var e2 = document.getElementById(e2_id);
+    var dx = e1.offsetLeft - e2.offsetLeft;
+        dx = e1.offsetWidth/2 + dx;
+    var dy = e1.offsetTop - e2.offsetTop;
+   return {x: dx,y: dy};
+  }
+ 
+  
+  function clickNow(divID){
+      var distance = getDistance(divID, "dealer-spot");
+      dealCard(distance);
   }
 
   

@@ -49,6 +49,9 @@ body {
     background-color: #45a173
 }
 
+.z-1000{
+    z-index: 100 !important;
+}
 
 #nav-bar{
     height: 75px;
@@ -77,7 +80,9 @@ body {
     top: 10px;
     left: 2.5%;
     width: 95%;
-    height: 950px;
+    height: 80vh;
+    max-height: 950px;
+    min-height: 450px;
     border: solid 2px lightslategray;
 }
 
@@ -125,10 +130,13 @@ body {
 
 #poker-table{
     position: relative;
+    height: 100%;
 }
 #poker-table > img{
     width: 100%;
-    height: auto;
+    height: 100%;
+    max-height: 750px;
+    
 }
 
 
